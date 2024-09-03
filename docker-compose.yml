@@ -1,0 +1,66 @@
+services:
+  gc-empregado:
+    build:
+      context: ./micro-empregado
+    container_name: gc-empregado
+    depends_on:
+      - gc-eureka
+    ports:
+      - "8081:8080"
+    networks:
+      - microservices-network
+
+  gc-ponto:
+    build:
+      context: ./micro-pontoeletronico
+    container_name: gc-ponto
+    depends_on:
+      - gc-eureka
+    ports:
+      - "8082:8080"
+    networks:
+      - microservices-network
+
+  gc-arquivos:
+    build:
+      context: ./micro-arquivos
+    container_name: gc-arquivos
+    depends_on:
+      - gc-eureka
+      - db-mongo
+    ports:
+      - "8083:8080"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://test:test@db-mongo:27017/dbarquivos
+    networks:
+      - microservices-network
+
+  gc-eureka:
+    build:
+      context: ./micro-eurekaserver
+    container_name: gc-eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+
+  db-mongo:
+    image: mongo:latest
+    container_name: db-mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=test
+      - MONGO_INITDB_ROOT_PASSWORD=test
+      - MONGO_INITDB_DATABASE=dbarquivos
+    ports:
+      - "27017:27017"
+    networks:
+      - microservices-network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  microservices-network:
+    driver: bridge
+
+volumes:
+  mongo-data:

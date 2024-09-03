@@ -1,0 +1,12 @@
+[submodule "micro-pontoeletronico"]
+	path = micro-pontoeletronico
+	url = https://github.com/taohansens/gestaocerta_pontoeletronico.git
+[submodule "micro-empregados"]
+	path = micro-empregados
+	url = https://github.com/taohansens/gestaocerta_empregados.git
+[submodule "micro-arquivos"]
+	path = micro-arquivos
+	url = https://github.com/taohansens/gestaocerta_arquivos.git
+[submodule "micro-server"]
+	path = micro-server
+	url = https://github.com/taohansens/gestaocerta_eurekaserver.git
