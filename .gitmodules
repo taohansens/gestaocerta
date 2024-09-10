@@ -10,3 +10,6 @@
 [submodule "micro-server"]
 	path = micro-server
 	url = https://github.com/taohansens/gestaocerta_eurekaserver.git
+[submodule "micro-rabbit"]
+	path = micro-rabbit
+	url = https://github.com/taohansens/micro-rabbit.git
